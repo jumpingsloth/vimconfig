@@ -46,6 +46,8 @@ set guioptions-=L
 command ToolbarOff set guioptions-=m | set guioptions-=T | set guioptions-=r | set guioptions-=L
 command ToolbarOn set guioptions+=m | set guioptions+=T | set guioptions+=r | set guioptions+=L
 
+autocmd filetype c nnoremap <C-r> :w <bar> exec '!konsole -e compile.sh '.shellescape('%').' '.shellescape('%:r').'.out'<CR>
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
