@@ -30,13 +30,15 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <C-o>:w<CR>
 nnoremap <C-q> :q<CR>
 
-nnoremap <C-x> gg53jO;<Esc>54jO;<Esc>:wq<CR>
-
 nnoremap <C-h> :noh<CR>
 
 inoremap jj <Esc>
 inoremap LL <Esc>A
 inoremap HH <Esc>I
+
+vnoremap <C-c> "+y
+inoremap <C-v> <C-r><C-p>+
+nnoremap <c-v> "+p
 
 set guioptions-=m
 set guioptions-=T
@@ -46,13 +48,15 @@ set guioptions-=L
 command ToolbarOff set guioptions-=m | set guioptions-=T | set guioptions-=r | set guioptions-=L
 command ToolbarOn set guioptions+=m | set guioptions+=T | set guioptions+=r | set guioptions+=L
 
-autocmd filetype c nnoremap <C-r> :w <bar> exec '!konsole -e compile.sh '.shellescape('%').' '.shellescape('%:r').'.out'<CR>
+autocmd filetype c nnoremap <C-r> :w <bar> silent exec '! xterm -e "make run ; read"'<CR>
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 
 Plug 'vim-scripts/matchit.zip'
+
+Plug 'mhinz/vim-startify'
 
 " Plug 'vimwiki/vimwiki'
 
@@ -66,7 +70,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " vimwiki configuration
 " let g:vimwiki_list = [{ 'path': '/data/Nextcloud/Notes/VimWiki/',
-	\ 'syntax':'markdown', 'ext': '.md' }]
+	" \ 'syntax':'markdown', 'ext': '.md' }]
 
 " autocmd FileType vimwiki set ft=markdown
 
