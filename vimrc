@@ -13,6 +13,8 @@ set spelllang=de
 
 set autochdir
 
+set lines=45 columns=100
+
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
@@ -48,7 +50,9 @@ set guioptions-=L
 command ToolbarOff set guioptions-=m | set guioptions-=T | set guioptions-=r | set guioptions-=L
 command ToolbarOn set guioptions+=m | set guioptions+=T | set guioptions+=r | set guioptions+=L
 
-autocmd filetype c nnoremap <C-r> :w <bar> silent exec '! xterm -e "make run ; read"'<CR>
+" autocmd filetype c nnoremap <C-r> :w <bar> silent exec '! xterm -e "make run ; read"'<CR>
+
+autocmd filetype c nnoremap <C-r> :AsyncRun xterm -e "make run ; echo '\n\nPress enter to continue...' ; read"<CR>
 
 call plug#begin('~/.vim/plugged')
 
@@ -57,6 +61,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/matchit.zip'
 
 Plug 'mhinz/vim-startify'
+
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Plug 'vimwiki/vimwiki'
 
@@ -74,6 +80,14 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " autocmd FileType vimwiki set ft=markdown
 
-packadd! dracula
-syntax enable
+if has("gui_running")
+if has("gui_gtk2")
+  set guifont=Inconsolata\ 12
+elseif has("gui_macvim")
+  set guifont=Menlo\ Regular:h14
+elseif has("gui_win32")
+  set guifont=Consolas:h11:cANSI
+endif
+endif
+
 colorscheme dracula
