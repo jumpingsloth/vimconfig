@@ -29,6 +29,7 @@ nnoremap <C-w> :bp <BAR> bd #<CR>
 nnoremap <C-n> :enew<CR>
 nnoremap <C-t> :e .<CR>
 nnoremap <C-s> :w<CR>
+nnoremap <C-S-s> :browse saveas<CR>
 inoremap <C-s> <C-o>:w<CR>
 nnoremap <C-q> :q<CR>
 
