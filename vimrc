@@ -43,6 +43,8 @@ vnoremap <C-c> "+y
 inoremap <C-v> <C-r><C-p>+
 nnoremap <c-v> "+p
 
+nnoremap <C-S-v> <C-v>
+
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
@@ -55,6 +57,8 @@ command ToolbarOn set guioptions+=m | set guioptions+=T | set guioptions+=r | se
 
 autocmd filetype c nnoremap <C-r> :AsyncRun xterm -e "make run ; echo '\n\nPress enter to continue...' ; read"<CR>
 
+autocmd filetype julia nnoremap <C-r> :AsyncRun terminator -e "julia $(VIM_FILEPATH) ; echo -e '\nPress enter to continue...' ; read"<CR>
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -64,6 +68,10 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'mhinz/vim-startify'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
+
+Plug 'JuliaEditorSupport/julia-vim'
+
+Plug 'skywind3000/asyncrun.vim'
 
 " Plug 'vimwiki/vimwiki'
 
