@@ -17,6 +17,8 @@ set autochdir
 
 set lines=45 columns=100
 
+set visualbell
+
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
@@ -46,6 +48,7 @@ inoremap <C-v> <C-r><C-p>+
 nnoremap <c-v> "+p
 
 nnoremap <C-S-v> <C-v>
+nnoremap <C-S-r> <C-r>
 
 set guioptions-=m
 set guioptions-=T
