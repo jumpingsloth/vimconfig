@@ -1,6 +1,6 @@
 set encoding=utf-8
 set number
-set relativenumber
+" set relativenumber
 set autoindent
 " set smartindent
 set tabstop=4
@@ -43,12 +43,12 @@ inoremap jj <Esc>
 inoremap LL <Esc>A
 inoremap HH <Esc>I
 
-vnoremap <C-c> "+y
-inoremap <C-v> <C-r><C-p>+
-nnoremap <c-v> "+p
+vnoremap <C-S-c> "+y
+inoremap <C-S-v> <C-r><C-p>+
+nnoremap <c-S-v> "+p
 
-nnoremap <C-S-v> <C-v>
-nnoremap <C-S-r> <C-r>
+# nnoremap <C-S-v> <C-v>
+# nnoremap <C-S-r> <C-r>
 
 set guioptions-=m
 set guioptions-=T
@@ -60,9 +60,10 @@ command ToolbarOn set guioptions+=m | set guioptions+=T | set guioptions+=r | se
 
 " autocmd filetype c nnoremap <C-r> :w <bar> silent exec '! xterm -e "make run ; read"'<CR>
 
-autocmd filetype c nnoremap <C-r> :AsyncRun xterm -e "make run ; echo '\n\nPress enter to continue...' ; read"<CR>
+autocmd filetype c nnoremap <C-S-r> :AsyncRun terminator -e "make run ; echo -e '\n\nPress enter to continue...' ; read"<CR>
+autocmd filetype cpp nnoremap <C-S-r> :AsyncRun terminator -e "make run ; echo -e '\n\nPress enter to continue...' ; read"<CR>
 
-autocmd filetype julia nnoremap <C-r> :AsyncRun terminator -e "julia $(VIM_FILEPATH) ; echo -e '\nPress enter to continue...' ; read"<CR>
+autocmd filetype julia nnoremap <C-S-r> :AsyncRun terminator -e "julia $(VIM_FILEPATH) ; echo -e '\nPress enter to continue...' ; read"<CR>
 
 call plug#begin('~/.vim/plugged')
 
