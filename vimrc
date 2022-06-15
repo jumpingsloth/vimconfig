@@ -29,6 +29,12 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 nnoremap <C-TAB> :bnext<CR>
 nnoremap <C-S-TAB> :bprevious<CR>
+
+nnoremap H <C-w>h
+nnoremap J <C-w>j
+nnoremap K <C-w>k
+nnoremap L <C-w>l
+
 nnoremap <C-w> :bp <BAR> bd #<CR>
 nnoremap <C-n> :enew<CR>
 nnoremap <C-t> :e .<CR>
@@ -46,9 +52,6 @@ inoremap HH <Esc>I
 vnoremap <C-S-c> "+y
 inoremap <C-S-v> <C-r><C-p>+
 nnoremap <c-S-v> "+p
-
-# nnoremap <C-S-v> <C-v>
-# nnoremap <C-S-r> <C-r>
 
 set guioptions-=m
 set guioptions-=T
