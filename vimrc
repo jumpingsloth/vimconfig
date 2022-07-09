@@ -15,7 +15,7 @@ set spelllang=de
 
 set autochdir
 
-set lines=45 columns=100
+" set lines=45 columns=100
 
 set visualbell
 
@@ -53,6 +53,27 @@ vnoremap <C-S-c> "+y
 inoremap <C-S-v> <C-r><C-p>+
 nnoremap <c-S-v> "+p
 
+nnoremap <S-Esc> :Startify<CR>
+
+" comment code
+autocmd filetype rust vnoremap <C-/> :s/^/\/\/ /<CR>:noh<CR>
+autocmd filetype rust nnoremap <C-/> :s/^/\/\/ /<CR>:noh<CR>
+" autocmd filetype rust vnoremap <C-S-/> :s/^\/\/ /<CR>:noh<CR>
+" autocmd filetype rust nnoremap <C-?> :s/^\/\/ /<CR>:noh<CR>
+
+autocmd filetype c vnoremap <C-/> :s/^/\/\/ /<CR>:noh<CR>
+autocmd filetype c nnoremap <C-/> :s/^/\/\/ /<CR>:noh<CR>
+" autocmd filetype c vnoremap <C-S-/> :s/^\/\/ /<CR>:noh<CR>
+" autocmd filetype c nnoremap <C-S-/> :s/^\/\/ /<CR>:noh<CR>
+
+autocmd filetype cpp vnoremap <C-/> :s/^/\/\/ /<CR>:noh<CR>
+autocmd filetype cpp nnoremap <C-/> :s/^/\/\/ /<CR>:noh<CR>
+" autocmd filetype cpp vnoremap <C-S-/> :s/^\/\/ /<CR>:noh<CR>
+" autocmd filetype cpp nnoremap <C-S-/> :s/^\/\/ /<CR>:noh<CR>
+
+autocmd filetype vimrc vnoremap <C-/> :s/^/" /<CR>:noh<CR>
+autocmd filetype vimrc nnoremap <C-/> :s/^/" /<CR>:noh<CR>
+
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
@@ -65,6 +86,7 @@ command ToolbarOn set guioptions+=m | set guioptions+=T | set guioptions+=r | se
 
 autocmd filetype c nnoremap <C-S-r> :AsyncRun terminator -e "make run ; echo -e '\n\nPress enter to continue...' ; read"<CR>
 autocmd filetype cpp nnoremap <C-S-r> :AsyncRun terminator -e "make run ; echo -e '\n\nPress enter to continue...' ; read"<CR>
+autocmd filetype rust nnoremap <C-S-r> :AsyncRun terminator -e "cargo run ; echo -e '\n\nPress enter to continue...' ; read"<CR>
 
 autocmd filetype julia nnoremap <C-S-r> :AsyncRun terminator -e "julia $(VIM_FILEPATH) ; echo -e '\nPress enter to continue...' ; read"<CR>
 
@@ -85,6 +107,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plug 'vimwiki/vimwiki'
+
+" Plug 'tribela/vim-transparent'
 
 call plug#end()
 
@@ -162,8 +186,17 @@ endif
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 							  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
+
+" Format buffer
+nnoremap F :call CocActionAsync('format')<CR>;
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -176,3 +209,8 @@ endfunction
 """"""""""""""""""""""
 
 colorscheme dracula
+
+" set transparency
+" hi Normal guibg=NONE ctermbg=NONE
+
+
